@@ -1,40 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
 
-package com.hfad.ch_7listview;
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-import androidx.appcompat.app.AppCompatActivity;
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/appBarLayout_ID"
+            android:keepScreenOn="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            >
 
-import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
 
-import java.sql.PreparedStatement;
-import java.util.Objects;
+                app:titleTextColor="@color/colorAccent"
 
-public class DrinkDetail extends AppCompatActivity
-{
-    static final String  sendMe = "";
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:background="@color/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                />
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_drink_detail );
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                app:tabGravity="fill"
+                app:tabUnboundedRipple="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabSelectedTextColor="@color/custom1"
+                />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        int index = 0;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            index = getIntent().getIntExtra( sendMe, 0 );
-        }
+    <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appBarLayout_ID"
+            android:layout_marginTop="0dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        Drinks drinks = Drinks.drinks[ index ];
-
-
-        ImageView imageView = findViewById( R.id.image );
-        TextView title = findViewById( R.id.textTitle );
-        TextView disc = findViewById( R.id.textDiscription );
+    </androidx.viewpager.widget.ViewPager>
 
 
-        imageView.setImageResource( drinks.getImageResourceID() );
-        title.setText( drinks.toString() );
-        disc.setText( drinks.getDisc() );
-    }
-
-}
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
